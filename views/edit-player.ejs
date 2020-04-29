@@ -1,0 +1,86 @@
+<%- include("partials/header") -%>
+
+   
+
+    <% if (player) { %>
+      <div class="empresasShow" id="empresaShow">
+          
+        <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+            <div class="empresasAdd"> 
+              <div class="empresasAddtitle">
+                  <h2>Altera a tua empresa</h2>
+              </div>
+              <div class="form__group">
+                  <label for="name" class="form__label">Nome da empresa</label>
+                  <input type="text" class="form__input" id="nome_empresa" name="nome_empresa"  value="<%= player.nome_empresa %>"  style="width: 250px;font-family:Arial, FontAwesome;margin: auto;"  required />
+                   
+              </div>
+              <div class="form__group">
+                  <label for="name" class="form__label">E-mail</label>
+                  <input type="text" class="form__input" id="email" name="email" value="<%= player.email %>"   style="width: 250px;font-family:Arial, FontAwesome;margin: auto;"  required />
+              </div>
+              <div class="form__group">
+                  <label for="name" class="form__label">Slogan(opcional)</label>
+                  <input type="text" class="form__input" id="slogan" name="slogan" value="<%= player.slogan %>"  style="width: 250px;font-family:Arial, FontAwesome;margin: auto;"  required="" />
+                   
+              </div>
+              <div class="form__group">
+                  <label for="name" class="form__label">Telefone(opcional)</label>
+                  <input type="number" class="form__input" id="telefone" name="telefone" value="<%= player.telefone %>"   style="width: 250px;font-family:Arial, FontAwesome;margin: auto;"   />
+                   
+              </div>
+              <div class="form__group">
+                  <label for="name" class="form__label">Pais</label>
+                  <select type="text"   class="form__input" id="pais" name="pais"  required="" style="width: 250px;margin: auto;" >
+                    <option selected><%= player.pais %>"</option>
+                    <option value="1" style="display: none;">Escolhe...</option>
+                      <option value="1">Portugal</option>
+                      <option value="2">Suiça</option>
+                  </select>
+                 
+                </div>
+                
+                
+                <div class="form__group">
+                  <label for="name" class="form__label">Cantão/Distrito</label>
+                <select type="text"  class="form__input" id="cidade" name="cidade"  required="" style="width: 250px;margin: auto;">
+                    <option style="display: none;">Escolhe...</option>
+                    <option selected><%= player.cidade %>"</option>
+                    <option class="pt">Braga</option>
+                    <option class="sw">Suiça</option>
+                    <option class="pt">Porto</option>
+                    <option class="sw">Suiça</option>
+                </select>
+                </div>  
+          
+                  <div class="form__group">
+                      <label for="name" class="form__label">Rua</label>
+                      <input type="text" class="form__input" id="rua"value="<%= player.rua %>" name="rua"   style="width: 250px;font-family:Arial, FontAwesome;margin: auto;"  required="" />
+                       
+                  </div>
+                  <div class="form__group">
+                      <label for="name" class="form__label">Código Postal</label>
+                      <input type="text" class="form__input" id="codpos" value="<%= player.codpos %>" name="codpos"   style="width: 250px;font-family:Arial, FontAwesome;margin: auto;"  required="" />
+                       
+                  </div>
+                  
+                  
+                  <div class="form__group" id="addDescricaoEmpresa">
+                      <label for="name" class="form__label" style="margin-left: 90px;">Descrição</label>
+                      <textarea type="text" class="form__input" value="<%= player.descricao %>" id="descricao" name="descricao"   style="width: 80%;font-family:Arial, FontAwesome;margin: auto;height: 150px;"  required="" ></textarea>
+                      
+                  </div>
+                
+                    
+                  <div class="form__group" id="btnadd">
+                    <input type="submit" id="btnadd" class="form__input"  value="Adicionar"  >
+                    </div>
+            </div>
+        </form>
+        <% } else { %>
+          <p class="text-center">Player Not Found. Go <a href="/add">here</a> to add players.</p>
+      <% } %>
+
+    </div>
+</div>
+<% include footer.ejs %> 

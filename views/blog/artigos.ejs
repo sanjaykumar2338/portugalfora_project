@@ -1,0 +1,103 @@
+<%- include("./../blog/partials/header") -%>
+
+
+<div class="sideBar" style="margin-top: -50px;">
+   <div class="empresasWorkSearch1" style=" height: 130px; padding-top: 10px; width: 98%; margin-left: 0; margin-bottom: 10px; margin-top: 50px; " >
+      <div class="workSearchTitle">
+        <a href="/empresas">
+        <h3>Transportes </h3>
+        <p>Portugal <i class="fas fa-arrows-alt-h"></i>   Suiça</p>
+        <h1><i class="fas fa-search"></i></h1>
+      </a>
+      </div>
+      
+    </div>  
+      
+    
+   
+    <br>
+    
+    <div class="sidebarpublicidade" style="margin-bottom: 15px;">
+     <img style="width: 98%;height: 240px;" src="/assets/img/Rebeka_Collier54@yahoo.com.jpeg"/>
+     <h2 style="position: absolute; margin-top: -250px;width: 200px;color: white;margin-left: 50px;">Espaço para publicidade</h2>
+   </div>
+
+   <section id="sidebarartigos" class="cards-wrapper">
+     <% if (sidenews.length > 0) {%>
+       <% sidenews.forEach((sidenew, index) => { %>
+     <div class="card-grid-space">
+       
+       <a class="card1" href="./conteudo?id=<%= sidenew.id %>" style="--bg-img: url (/uploads/blog_images/<%= sidenew.image %>) ">
+         <div>
+          
+           <p><%= sidenew.blog_title %></p>
+           <div class="date"><%= sidenew.created_at.toDateString() %></div>
+           <div class="tags">
+             <div class="tag">HTML</div>
+           </div>
+         </div>
+       </a>
+     </div>
+     <br>
+     <% }) %>
+     <!-- https://images.unsplash.com/photo-1520839090488-4a6c211e2f94?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=38951b8650067840307cba514b554ba5&auto=format&fit=crop&w=1350&q=80 -->
+   </section>
+   
+   <% } else { %>
+     <p class="text-center">Não encontramos noticias <a href="/empresas" >Aqui</a> para voltar atrás.</p>
+   <% } %>
+
+   </div>
+<div class="artigosShow" >
+  
+   
+ 
+
+
+   
+   
+   
+    <%  for (let index in all_blog){ %>
+      <div class="buttonsDesporto" style="margin-top:-190px;position: absolute; display: inline-flex;justify-content: space-around;
+      width: 80%; margin-left: -170px;height: 30px; background-color: rgb(75, 74, 74); ">
+         <h3><a href="/desporto?id=13 %>"  >Desporto</a></h3>
+         <h3><a href="/desporto?id=14 %>">Saúde</a></h3>
+         <h3><a href="/desporto?id=15 %>">Viagens</a></h3>
+         <h3><a href="/desporto?id=16 %>">Cidades de Portugal</a></h3>
+         <h3><a href="/desporto?id=17 %>">Sobre Suiça</a></h3>
+         <h3><a href="/desporto?id=18 %>">Tecnologias</a></h3>
+       </div>    
+       
+	 <div class="titleTodosArtigos" style="width: 100%;">
+      <h2 ><a href="/desporto?id=<%= all_blog[index][0].category_id %>" style="background-color:rgb(206, 204, 204);width: 100%;"><%= all_blog[index][0].category_name %></a> </h2>
+      <div class="line"></div>
+   </div>
+  
+   <%  for (let index1 in all_blog[index]){ %> 
+	<% if(index1 <= 2) { %>
+   <article class="card"  style="position: static;height: 360px; margin-top: 60px;width: 350px;">
+      <div class="thumb" style="height:150px;" > <span  id="flag" ><h5><i class="far fa-calendar-alt"></i>	<%
+         var split = all_blog[index][index1].created_at.split('-');
+         var dte = split[2].split('T')[0]+'-'+split[1]+'-'+split[0];
+         %>
+         <%= dte %></h5></span><img src="../uploads/blog_images/<%= all_blog[index][index1].image %>" ></div>
+     
+      <div class="infos" style="line-height: 15px; height: 420px;">
+         <h2 class="title" style="letter-spacing: 0px;"><%= all_blog[index][index1].blog_title %></h2>
+       <br>
+         <h3 class="date" style="text-transform: none; color: black; font-family: Open Sans; font-size: 14px; line-height: 20px;"><%= all_blog[index][index1].blog_desc.replace(/^(.{100}[^\s]*).*/, "$1") %></h3>
+         <p class="txt" style=" height: 100%px;">
+          
+            <h5>&nbsp <i class="fas fa-tags"> </i>  <%= all_blog[index][index1].category_name %></h5><br><br><br><br><br>
+        
+		 </p><br> <br>
+         <h3 class="details">
+            <a href="./conteudo?id=<%= all_blog[index][index1].id %>" class="btn btn-sm btn-danger" style="padding-top:50px;">Ver</a>
+            <div class="fb-share-button" style="padding-left: 230px;" data-href="https://www.portugal-la-fora.com/conteudo?id=<%= all_blog[index][index1].id %>" data-width="200" data-type="button_count"></div>
+         </h3>
+      </div>
+   </article>
+     <% } } } %> 
+</div>
+</div>
+<% include ../footer.ejs %> 

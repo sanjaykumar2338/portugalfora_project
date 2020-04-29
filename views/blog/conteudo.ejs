@@ -1,0 +1,87 @@
+<%- include("./../blog/partials/header") -%>
+<div class="sideBar" style="margin-top: -50px;">
+   <div class="empresasWorkSearch1" style=" height: 130px; padding-top: 10px; width: 98%; margin-left: 0; margin-bottom: 10px; margin-top: 50px; " >
+      <div class="workSearchTitle">
+        <a href="/empresas">
+        <h3>Transportes </h3>
+        <p>Portugal <i class="fas fa-arrows-alt-h"></i>   Suiça</p>
+        <h1><i class="fas fa-search"></i></h1>
+      </a>
+      </div>
+      
+    </div>  
+      
+    
+   
+    <br>
+    
+    <div class="sidebarpublicidade" style="margin-bottom: 15px;">
+     <img style="width: 98%;height: 240px;" src="/assets/img/Rebeka_Collier54@yahoo.com.jpeg"/>
+     <h2 style="position: absolute; margin-top: -250px;width: 200px;color: white;margin-left: 50px;">Espaço para publicidade</h2>
+   </div>
+ 
+   <section id="sidebarartigos" class="cards-wrapper">
+     <% if (sidenews.length > 0) {%>
+       <% sidenews.forEach((sidenew, index) => { %>
+     <div class="card-grid-space">
+       
+       <a class="card1" href="./conteudo?id=<%= sidenew.id %>" style="--bg-img: url (/uploads/blog_images/<%= sidenew.image %>) ">
+         <div>
+          
+           <p><%= sidenew.blog_title %></p>
+           <div class="date"><%= sidenew.created_at.toDateString() %></div>
+           <div class="tags">
+             <div class="tag">HTML</div>
+           </div>
+         </div>
+       </a>
+     </div>
+     <br>
+     <% }) %>
+      </section>
+   
+   <% } else { %>
+     <p class="text-center">Não encontramos noticias <a href="/empresas" >Aqui</a> para voltar atrás.</p>
+   <% } %>
+ 
+   </div>
+<div class="conteudoShow">
+       <div class="container2" style="width: 70%; margin:auto;">
+        <div class="imagem" style="margin: auto; text-align: center;"><img  style="width: 800px;height:450px; margin: auto;" src="../uploads/blog_images/<%= result.image %>" alt=""></div>
+       
+        <div class="title" style="color: black;"><h2 style="color: black; float: left;"><%= result.blog_title %></h2></div>
+       <br><br>
+       <div class="date1" ><h5   style="float: left;"><i style="color: gray;" class="far fa-calendar-alt"></i>	<%
+        var split = result.created_at.split('-');
+        var dte = split[2].split('T')[0]+'-'+split[1]+'-'+split[0];
+        %>
+        <%= dte %> &nbsp  &nbsp <i style="color: gray;" class="fas fa-tags"> </i>  <%= result.category_name %></h5> </div>
+       
+       <div class="subtitle"><br><br><br><h2><%= result.blog_desc %>
+       </h2></div><br>
+        <div class="conteudo3" style="line-height: 30px ;">
+        
+       
+    <%- result.full_description %>
+    
+    <div class="fb-share-button" style="float:right; margin-bottom:20px;height: 50px; "   data-href="https://www.portugal-la-fora.com/conteudo?id=<%= result.id %>" data-type="button_count"></div>
+   </div>
+   <br>
+
+    </div>
+    
+    <div class="artigosRecomendados" style="width: 100%;">
+      <h2 ><a href="/desporto?id=<%= result.category_id %>" style="background-color:rgb(206, 204, 204);width: 100%;"><%= result.category_name %></a> </h2>
+      <div class="line"></div>
+   </div>
+  
+
+</div>
+
+</div>
+  
+
+
+</div>
+
+<% include ../footer.ejs %> 

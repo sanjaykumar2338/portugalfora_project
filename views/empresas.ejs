@@ -1,0 +1,215 @@
+<%- include("partials/header") -%>
+<%- include("partials/header") -%>
+<form class="searchwork" id="searchworkEmpresas" name=-"search" method="get" style=" margin-left:70px">
+     
+      
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <%  if (distrito){ %>
+   <div class="form__group">
+     <select type="text" class="form__input" id="cantao" name="distrito" placeholder="&#xf041; Cantão "  style="font-family:Arial, FontAwesome"   >
+      <option value="0" >Escolhe a localização da empresa</option> 
+      <%  for (let index in distrito){ %>
+         <% var selected = ( distrito[index].id == req.query.distrito ) ? "selected" : ""; %>	
+        <option <%=selected %> value="<%= distrito[index].id %>"><%= distrito[index].distrito %></option>
+      <% } %>  
+    </select>
+    <%  } %>
+
+
+
+     <%  if (actividade){ %>	
+   </div>
+   <div class="form__group">
+       <select type="text" name="actividade" class="form__input" id="name" placeholder="Actividade" style="width: 260px;"  >
+        <option value="0">Escolhe a categoria da empresa</option> 
+        <%  for (let index in actividade){ %>
+          <% var selected = ( actividade[index].id == req.query.actividade ) ? "selected" : ""; %>	
+          <option <%=selected %> value="<%= actividade[index].id %>"><%= actividade[index].actividade%></option>
+        <% } %>  
+      
+      </select>
+   
+   </div>
+   <%  } %>
+
+
+
+
+
+  
+   <div class="form__group" id="btnsearch">
+       <input  type="submit" name="search" value="&#xF002; Procurar" class="form__input" id="name" placeholder="&#xF002; Search" required=""style="font-family:Arial, FontAwesome" />
+
+     </div>
+     
+   </form>
+
+<div class="empresasMain">
+
+<div class="sideBar">
+ 
+ <div class="empresasWorkSearch" style="margin-top: -55px; background-color: rgb(85, 83, 83); height: 350px; padding-top: 10px; width: 96%;">
+  
+  <form method="GET" name="search_form" action="./empresas">
+   <div class="workSearchTitle">
+     
+     <h3>Transportes </h3>
+     <p>Portugal <i class="fas fa-arrows-alt-h"></i>   Suiça</p>
+     
+   </div>
+
+   <div class="worksearch2">
+     
+     <div class="form__group">
+       <select type="text"   class="form__input select_country" id="pais2" placeholder="Filtrar por" required="" >
+         <option value="1" style="display: none;">País de origem...</option>
+           <option value="1">Portugal</option>
+           <option value="2">Suiça</option>
+       </select>
+      
+     </div>
+     
+     <div class="inflex">
+     <div class="form__group">
+     <select type="text"  class="form__input" name="from" id="from_country_start" placeholder="Filtrar por" required="" >
+        
+     </select>
+     
+     </div>
+     <div class="form__group">
+     <select type="text"  class="form__input" name="to" id="to_country_start" placeholder="Filtrar por" required="" >
+       
+     </select>
+     </div>
+     </div>
+    
+     <div class="form__group" id="btnsearch1">
+       <input type="submit" value="&#xF002; Procurar" class="form__input" id="name" placeholder=" Search" required=""style="font-family:Arial, FontAwesome" />  
+		
+     </div>
+   </div>
+   
+   </form>
+   <div class="empresasWorkSearch" style="padding-left: 25px;">   
+    <form method="GET" action="./empresas">
+     <div class="form__group" id="btnsearch1">
+     <input type="submit" value="Limpar" class="form__input" id="name" placeholder=" Search" required=""style="font-family:Arial, FontAwesome" /> 
+      </div>
+    </form>
+  </div>   
+ </div>   
+   
+ 
+
+ <br>
+ 
+ <div class="sidebarpublicidade" style="margin-bottom: 15px;">
+  <img style="width: 98%;height: 240px;" src="/assets/img/Rebeka_Collier54@yahoo.com.jpeg"/>
+  <h2 style="position: absolute; margin-top: -250px;width: 200px;color: white;margin-left: 50px;">Espaço para publicidade</h2>
+</div>
+  
+
+
+<section id="sidebarartigos" class="cards-wrapper">
+  <% if (sidenews.length > 0) {%>
+    <% sidenews.forEach((sidenew, index) => { %>
+  <div class="card-grid-space">
+    
+    <a class="card1" href="./conteudo?id=<%= sidenew.id %>" style="--bg-img: url (/uploads/blog_images/<%= sidenew.image %>) ">
+      <div>
+       
+        <p><%= sidenew.blog_title %></p>
+        <div class="date"><%= sidenew.created_at.toDateString() %></div>
+        <div class="tags">
+          <div class="tag">HTML</div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <br>
+  <% }) %>
+  <!-- https://images.unsplash.com/photo-1520839090488-4a6c211e2f94?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=38951b8650067840307cba514b554ba5&auto=format&fit=crop&w=1350&q=80 -->
+</section>
+
+<% } else { %>
+  <p class="text-center">Não encontramos noticias <a href="/empresas" >Aqui</a> para voltar atrás.</p>
+<% } %>
+</div>
+<style>
+.table-wrapper {
+   margin-top: 50px;
+}
+
+.player-img {
+   width: 40px;
+   height: 40px;
+}
+
+.add-player-form {
+   margin-top: 50px;
+}
+</style>
+
+<div class="empresasShow" id="grid">
+  
+        <% if (players!=undefined) {%>
+              <% if (players.length > 0) {%>
+                <% players.forEach((player, index) => { %>
+
+                  
+          
+
+                <article class="card"  style="position: static;">
+				
+                    <div class="thumb"  ><img src="/assets/img/<%= player.image %>" >
+					<div class="rating centered_index_page">
+					    <% if(player.rating) { %>
+						<% for(i=0;i<parseInt(player.rating);i++) { %>
+						<span style="color:gold">☆</span>
+						<% } } else { %>
+						<% for(i=0;i<3;i++) { %>
+						<span style="color:gold">☆</span>
+						<% } } %>
+						</div>
+					</div>
+                    <div class="infos">
+                      <h2 class="title"><%= player.nome_empresa %><span class="flag" ></span></h2>
+                      <h3 class="date"><%= player.distrito_name %></h3>
+                      <p class="txt">
+                        <td><%= player.descricao %></td>
+                        <td><%= player.email %></td>
+                      </p>
+                      <h3 class="details"> <a href="/empresaProfile/<%= player.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Ver</a></h3
+                    </div>
+                  </article>
+
+
+
+
+                
+                    <% }) %>
+                
+           
+        <% }} else { %>
+            <p class="text-center">Não encontramos empresas <a href="/index" >Aqui</a> para voltar atrás.</p>
+        <% } %>
+        
+                       
+    <input type='hidden' id='current_page' />
+    <input type='hidden' id='show_per_page' />
+    <div id='page_navigation' style="position: absolute;padding-left: 238px;padding-top: 0px;"></div>
+          
+    </div>
+  
+ 
+    
+
+</div>
+  
+<script src="/resources/js/review_pagination.js"></script>
+  
+
+  
+<% include footer.ejs %> 
+
+  
